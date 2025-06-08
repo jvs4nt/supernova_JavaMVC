@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{alertas.titulo}">Alertas | Painel Admin</title>
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu}"></div>
+
+<div class="container">
+    <h1 th:text="#{alertas.lista}">Lista de Alertas</h1>
+
+    <a href="/admin/alertas/novo" class="btn btn-primary" th:text="#{alertas.novo}">Novo Alerta</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th th:text="#{alertas.tipo}">Tipo</th>
+            <th th:text="#{alertas.latitude}">Latitude</th>
+            <th th:text="#{alertas.longitude}">Longitude</th>
+            <th th:text="#{usuarios.acoes}">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="alerta : ${alertas}">
+            <td th:text="${alerta.id}"></td>
+            <td th:text="${alerta.tipoAlerta}"></td>
+            <td th:text="${alerta.latitude}"></td>
+            <td th:text="${alerta.longitude}"></td>
+            <td>
+                <a th:href="@{'/admin/alertas/editar/' + ${alerta.id}}" class="btn btn-warning" th:text="#{usuarios.editar}">Editar</a>
+                <a th:href="@{'/admin/alertas/deletar/' + ${alerta.id}}"
+                   class="btn btn-danger"
+                   th:attr="onclick='return confirm(\'' + #{alertas.confirmarExclusao} + '\')'"
+                   th:text="#{usuarios.excluir}">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

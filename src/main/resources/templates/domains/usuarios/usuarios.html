@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale}">
+<head>
+  <title th:text="#{usuarios.titulo}">Usuarios | Painel Admin</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+
+<!-- Fragmento de header -->
+<div th:replace="~{fragments/header :: menu}"></div>
+
+<div class="container">
+  <h1 th:text="#{usuarios.titulo}">Usuarios</h1>
+
+  <!-- Mensagens de sucesso -->
+  <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+  <a href="/admin/usuarios/novo" class="btn btn-primary" th:text="#{usuarios.novo}">Novo Usuario</a>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th th:text="#{usuarios.nome}">Nome</th>
+      <th th:text="#{usuarios.email}">Email</th>
+      <th th:text="#{usuarios.cep}">CEP</th>
+      <th th:text="#{usuarios.role}">Perfil</th>
+      <th th:text="#{usuarios.status}">Status</th>
+      <th th:text="#{usuarios.acoes}">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="usuario : ${usuarios}">
+      <td th:text="${usuario.id}"></td>
+      <td th:text="${usuario.nome}"></td>
+      <td th:text="${usuario.email}"></td>
+      <td th:text="${usuario.cep}"></td>
+      <td th:text="${usuario.role}"></td>
+      <td th:text="${usuario.flDocVerificado == 'S' ? 'Autenticado' : 'Pendente'}"></td>
+      <td>
+        <div class="btn-group">
+          <a th:href="@{'/admin/usuarios/editar/' + ${usuario.id}}" class="btn btn-warning" th:text="#{usuarios.editar}">Editar</a>
+
+          <form th:action="@{'/admin/usuarios/' + ${usuario.id} + '/bloquear'}" method="post">
+            <button class="btn btn-secondary" type="submit" th:text="#{usuarios.bloquear}">Bloquear</button>
+          </form>
+
+          <form th:action="@{'/admin/usuarios/' + ${usuario.id} + '/aprovar'}" method="post">
+            <button class="btn btn-success" type="submit" th:text="#{usuarios.aprovar}">Aprovar</button>
+          </form>
+
+          <a th:href="@{'/admin/usuarios/deletar/' + ${usuario.id}}"
+             class="btn btn-danger"
+             th:onclick="'return confirm(\'' + #{usuarios.confirmarExclusao} + '\')'"
+             th:text="#{usuarios.excluir}">
+            Excluir
+          </a>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Fragmento de footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

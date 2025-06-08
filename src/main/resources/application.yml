@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: supernova
+
+  datasource:
+    url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl
+    username: rm554018
+    password: 170404
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:sk-proj-...}
+      chat:
+        options:
+          model: gpt-3.5-turbo
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        default-requeue-rejected: false
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
+
+  web:
+    resources:
+      static-locations: classpath:/static/, classpath:/public/, classpath:/resources/, classpath:/META-INF/resources/
+
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+
+server:
+  port: 8080
+  servlet:
+    context-path: /

@@ -1,0 +1,25 @@
+<header th:fragment="menu" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <nav class="header-nav" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 10px;">
+        <div style="flex: 1; text-align: center;">
+            <h1 th:text="#{app.title}">Supernova - Painel Administrativo</h1>
+        </div>
+
+        <div class="nav-links" sec:authorize="hasRole('ADMIN')" style="display: flex; gap: 10px;">
+            <a th:href="@{/admin/usuarios}" th:text="#{menu.usuarios}">Usuarios</a>
+            <a th:href="@{/admin/noticias}" th:text="#{menu.noticias}">Noticias</a>
+            <a th:href="@{/admin/alertas}" th:text="#{menu.alertas}">Alertas</a>
+            <a th:href="@{/admin/documentos/validar}" th:text="#{menu.documentos}">Documentos</a>
+        </div>
+
+        <div class="language-switch" style="display: flex; gap: 5px;">
+            <a th:href="@{/admin/usuarios(lang='pt')}" title="Português">🇧🇷</a>
+            <a th:href="@{/admin/usuarios(lang='en')}" title="English">🇺🇸</a>
+        </div>
+
+        <div class="logout">
+            <form th:action="@{/logout}" method="post">
+                <button class="logout-button" type="submit" th:text="#{menu.sair}">Sair</button>
+            </form>
+        </div>
+    </nav>
+</header>

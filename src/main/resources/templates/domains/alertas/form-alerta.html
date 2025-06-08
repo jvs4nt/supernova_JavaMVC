@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${alertaId != null} ? #{alertas.editar} : #{alertas.novo}">Novo Alerta</title>
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu}"></div>
+
+<div class="container">
+    <h1 th:text="${alertaId != null} ? #{alertas.editar} : #{alertas.novo}">Novo Alerta</h1>
+
+    <form th:action="@{/admin/alertas/salvar}" th:object="${alerta}" method="post">
+        <input type="hidden" name="alertaId" th:value="${alertaId}" />
+        <input type="hidden" th:field="*{usuarioId}" />
+
+        <div class="form-group">
+            <label for="tipoAlerta" th:text="#{alertas.tipo}">Tipo de Alerta</label>
+            <input type="text" id="tipoAlerta" th:field="*{tipoAlerta}" class="form-control" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('tipoAlerta')}" th:errors="*{tipoAlerta}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="latitude" th:text="#{alertas.latitude}">Latitude</label>
+            <input type="number" step="any" id="latitude" th:field="*{latitude}" class="form-control">
+            <div class="text-danger" th:if="${#fields.hasErrors('latitude')}" th:errors="*{latitude}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="longitude" th:text="#{alertas.longitude}">Longitude</label>
+            <input type="number" step="any" id="longitude" th:field="*{longitude}" class="form-control">
+            <div class="text-danger" th:if="${#fields.hasErrors('longitude')}" th:errors="*{longitude}"></div>
+        </div>
+
+        <button type="submit" class="btn btn-success" th:text="#{form.salvar}">Salvar</button>
+        <a href="/admin/alertas" class="btn btn-secondary" th:text="#{form.cancelar}">Cancelar</a>
+    </form>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

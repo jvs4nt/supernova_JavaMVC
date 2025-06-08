@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: supernova-test
+
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/supernova-db
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        default-requeue-rejected: false
+
+  thymeleaf:
+    cache: false
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+
+  ai:
+    openai:
+      api-key: disable-nos-testes
+
+server:
+  port: 0
+logging:
+  level:
+    root: WARN
+    org.springframework: WARN

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale}">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="#{noticias.nova} + ' | ' + #{app.title}">Nova Notícia | Painel Admin</title>
+  <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu}"></div>
+
+<div class="container">
+  <p><strong th:text="#{noticias.autor} + ':'">Autor:</strong> <span th:text="${autorNome}">Fulano</span></p>
+
+  <h1 th:text="${noticiaId != null} ? #{noticias.editar} : #{noticias.nova}">Nova Noticia</h1>
+
+  <form th:action="@{/admin/noticias/salvar}" th:object="${noticia}" method="post">
+    <input type="hidden" name="noticiaId" th:value="${noticiaId}" />
+
+    <div class="form-group">
+      <label for="titulo" th:text="#{noticias.titulo}">Título</label>
+      <input type="text" id="titulo" th:field="*{titulo}" class="form-control" required>
+      <div class="text-danger" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="subtitulo" th:text="#{noticias.subtitulo}">Subtitulo</label>
+      <input type="text" id="subtitulo" th:field="*{subtitulo}" class="form-control">
+      <div class="text-danger" th:if="${#fields.hasErrors('subtitulo')}" th:errors="*{subtitulo}"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="conteudo" th:text="#{noticias.conteudo}">Conteúdo</label>
+      <textarea id="conteudo" th:field="*{conteudo}" class="form-control" rows="6"></textarea>
+      <div class="text-danger" th:if="${#fields.hasErrors('conteudo')}" th:errors="*{conteudo}"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="link" th:text="#{noticias.link}">Link</label>
+      <input type="text" id="link" th:field="*{link}" class="form-control">
+      <div class="text-danger" th:if="${#fields.hasErrors('link')}" th:errors="*{link}"></div>
+    </div>
+
+    <button type="submit" class="btn btn-success" th:text="#{form.salvar}">Salvar</button>
+    <a href="/admin/noticias" class="btn btn-secondary" th:text="#{form.cancelar}">Cancelar</a>
+  </form>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

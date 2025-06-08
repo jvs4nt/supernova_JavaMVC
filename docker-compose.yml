@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: supernova-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - supernova-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: supernova-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - supernova-network
+
+volumes:
+  mongo_data:
+
+networks:
+  supernova-network:
+    driver: bridge

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{documentos.titulo}">Pré-Validação de Documento</title>
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+
+<!-- Header reutilizável -->
+<div th:replace="~{fragments/header :: menu}"></div>
+
+<!-- Container principal -->
+<div class="container">
+
+    <h2 th:text="#{documentos.titulo}">Pré-Validação de Documento</h2>
+
+    <!-- Formulário -->
+    <form th:action="@{/admin/documentos/validar}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="arquivo" th:text="#{documentos.label}">Selecione a imagem do documento:</label>
+            <input type="file" name="arquivo" id="arquivo" accept="image/*" class="form-control" required>
+        </div>
+
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary" th:text="#{documentos.botao}">Extrair Dados</button>
+        </div>
+    </form>
+
+    <!-- Resultado -->
+    <div th:if="${resultado != null}" class="mt-4">
+        <h3 th:text="#{documentos.resultado.titulo}">Dados Extraídos:</h3>
+        <ul>
+            <li><strong>Nome:</strong> <span th:text="${resultado.nome}">--</span></li>
+            <li><strong>CPF:</strong> <span th:text="${resultado.cpf}">--</span></li>
+            <li><strong th:text="#{documentos.dataNascimento} + ':'">Data de Nascimento:</strong> <span th:text="${resultado.dataNascimento}">--</span></li>
+            <li><strong th:text="#{documentos.nacionalidade} + ':'">Nacionalidade:</strong> <span th:text="${resultado.nacionalidade}">--</span></li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Footer opcional -->
+<footer>
+    &copy; 2025 Supernova. <span th:text="#{footer.rights}">Todos os direitos reservados.</span>
+</footer>
+
+</body>
+</html>

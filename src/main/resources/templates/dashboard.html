@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{app.title}">Painel Administrativo</title>
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu}"></div>
+
+<div class="container">
+    <h1><span th:text="#{dashboard.boasvindas}">Ola,</span> <span th:text="${nome}">Usuario</span>!</h1>
+    <p th:text="#{dashboard.mensagem}">Seja bem-vindo ao Painel Administrativo.</p>
+
+    <ul>
+        <li><a href="/admin/noticias" th:text="#{menu.noticias}">Gerenciar Noticias</a></li>
+        <li><a href="/admin/usuarios" th:text="#{menu.usuarios}">Gerenciar Usuarios</a></li>
+        <li><a href="/admin/alertas" th:text="#{menu.alertas}">Gerenciar Alertas</a></li>
+        <li><a href="/admin/aprovacao-documentos" th:text="#{menu.documentos}">Aprovar Documentos</a></li>
+    </ul>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

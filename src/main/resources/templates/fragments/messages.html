@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<body>
+<div th:fragment="messages">
+    <div th:if="${not #lists.isEmpty(#fields.errors())}" class="alert alert-danger">
+        <ul>
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <div th:if="${param.success}" class="alert alert-success">
+        <span th:text="${param.success}">Operação realizada com sucesso!</span>
+    </div>
+
+    <div th:if="${param.error}" class="alert alert-danger">
+        <span th:text="${param.error}">Ocorreu um erro!</span>
+    </div>
+</div>
+</body>
+</html>

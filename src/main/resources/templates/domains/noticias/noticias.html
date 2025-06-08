@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{menu.noticias} + ' | ' + #{app.title}">Notícias | Painel Admin</title>
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: menu}"></div>
+
+<div class="container">
+    <h1 th:text="#{menu.noticias}">Notícias</h1>
+
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+    <a href="/admin/noticias/nova" class="btn btn-primary" th:text="#{noticias.nova}">Nova Notícia</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th th:text="#{noticias.titulo}">Título</th>
+            <th th:text="#{noticias.subtitulo}">Subtítulo</th>
+            <th th:text="#{noticias.autor}">Autor</th>
+            <th th:text="#{usuarios.acoes}">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="noticia : ${noticias}">
+            <td th:text="${noticia.id}"></td>
+            <td th:text="${noticia.titulo}"></td>
+            <td th:text="${noticia.subtitulo}"></td>
+            <td th:text="${noticia.nomeAutor}"></td>
+            <td>
+                <a th:href="@{'/admin/noticias/editar/' + ${noticia.id}}" class="btn btn-warning" th:text="#{usuarios.editar}">Editar</a>
+                <a th:href="@{'/admin/noticias/deletar/' + ${noticia.id}}"
+                   class="btn btn-danger"
+                   th:attr="onclick='return confirm(\'' + #{noticias.confirmarExclusao} + '\')'"
+                   th:text="#{usuarios.excluir}">
+                    Excluir
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

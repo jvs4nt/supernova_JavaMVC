@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale}">
+<head>
+  <title th:text="#{usuarios.novo}">Formulário de Usuario</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/global.css}">
+</head>
+<body>
+
+<!-- Fragmento de header -->
+<div th:replace="fragments/header :: menu"></div>
+
+<div class="container">
+  <h1 th:text="${usuarioId == null} ? #{usuarios.novo} : #{usuarios.editar}">Formulario</h1>
+
+  <form th:action="@{/admin/usuarios/salvar}" method="post" th:object="${usuario}">
+    <input type="hidden" name="usuarioId" th:value="${usuarioId}" />
+
+    <div class="form-group">
+      <label th:for="*{nome}" th:text="#{usuarios.nome}">Nome</label>
+      <input type="text" th:field="*{nome}" class="form-control"/>
+      <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+      <label th:for="*{email}" th:text="#{usuarios.email}">Email</label>
+      <input type="email" th:field="*{email}" class="form-control"/>
+      <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+      <label th:for="*{senha}" th:text="#{usuarios.senha}">Senha</label>
+      <input type="password" th:field="*{senha}" class="form-control"/>
+      <span th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+      <label th:for="*{cep}" th:text="#{usuarios.cep}">CEP</label>
+      <input type="text" th:field="*{cep}" class="form-control" maxlength="8"/>
+      <span th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+      <label th:for="*{role}" th:text="#{usuarios.role}">Perfil</label>
+      <select th:field="*{role}" class="form-control">
+        <option value="" th:text="#{form.selecione}">Selecione</option>
+        <option value="USER">Usuário</option>
+        <option value="VOLUNTARIO">Voluntário</option>
+        <option value="ADMIN">Administrador</option>
+      </select>
+      <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3" th:text="#{form.salvar}">Salvar</button>
+    <a th:href="@{/admin/usuarios}" class="btn btn-secondary mt-3" th:text="#{form.cancelar}">Cancelar</a>
+  </form>
+</div>
+
+<!-- Fragmento de footer -->
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
