@@ -3,10 +3,17 @@ spring:
     name: supernova
 
   datasource:
-    url: jdbc:sqlserver://supernova-solutions.database.windows.net
-    username: supernova
+    # URL seguindo o modelo fornecido pela Azure
+    url: >-
+      jdbc:sqlserver://supernova-solutions.database.windows.net:1433;
+      database=supernova-bd;
+      encrypt=true;
+      trustServerCertificate=false;
+      hostNameInCertificate=*.database.windows.net;
+      loginTimeout=30;
+    username: supernova@supernova-solutions
     password: G#us#553326
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   jpa:
     hibernate:
