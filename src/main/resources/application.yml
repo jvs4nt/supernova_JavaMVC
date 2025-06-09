@@ -3,10 +3,10 @@ spring:
     name: supernova
 
   datasource:
-    url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl
-    username: rm554018
-    password: 170404
-    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:sqlserver://supernova-solutions.database.windows.net
+    username: supernova
+    password: G#us#553326
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
