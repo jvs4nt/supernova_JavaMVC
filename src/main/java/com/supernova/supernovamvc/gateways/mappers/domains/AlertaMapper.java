@@ -27,11 +27,11 @@ public class AlertaMapper {
 
     public static AlertaResponseDTO toResponse(Alerta alerta) {
         return AlertaResponseDTO.builder()
-                .id(alerta.getId())
+                .id(String.valueOf(alerta.getId()))
                 .tipoAlerta(alerta.getTipoAlerta())
                 .latitude(alerta.getLatitude())
                 .longitude(alerta.getLongitude())
-                .usuarioId(alerta.getUsuario().getId())
+                .usuarioId(String.valueOf(alerta.getUsuario().getId()))
                 .nomeUsuario(alerta.getUsuario().getNome())
                 .build();
     }

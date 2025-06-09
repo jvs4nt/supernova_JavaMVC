@@ -4,7 +4,6 @@ import com.supernova.supernovamvc.gateways.dtos.reponses.domains.usuarios.Autent
 import com.supernova.supernovamvc.gateways.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 

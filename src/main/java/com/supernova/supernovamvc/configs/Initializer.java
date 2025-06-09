@@ -24,7 +24,7 @@ public class Initializer {
 
         var admin = usuarioQueryService.findByEmailOrNull("admin@supernova.com");
         if (admin != null) {
-            usuarioProducer.notificarAutenticacao(admin.getId());
+            usuarioProducer.notificarAutenticacao(String.valueOf(admin.getId()));
         }
 
     }

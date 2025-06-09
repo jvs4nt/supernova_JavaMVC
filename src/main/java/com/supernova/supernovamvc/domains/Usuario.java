@@ -1,17 +1,18 @@
 package com.supernova.supernovamvc.domains;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
-@Document(collection = "usuarios")
+@Entity
+@Table(name = "usuario")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String email;
     private String senha;

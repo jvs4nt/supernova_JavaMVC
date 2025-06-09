@@ -34,7 +34,7 @@ public class UsuarioMapper {
 
     public static UsuarioResponseDTO toResponse(Usuario usuario) {
         return UsuarioResponseDTO.builder()
-                .id(usuario.getId())
+                .id(String.valueOf(usuario.getId()))
                 .nome(usuario.getNome())
                 .email(usuario.getEmail())
                 .cep(usuario.getCep())

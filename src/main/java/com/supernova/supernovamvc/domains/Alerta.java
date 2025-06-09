@@ -1,20 +1,21 @@
 package com.supernova.supernovamvc.domains;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
-@Document(collection = "alertas")
+@Entity
+@Table(name = "alerta")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Alerta {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @DBRef
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     private String tipoAlerta;

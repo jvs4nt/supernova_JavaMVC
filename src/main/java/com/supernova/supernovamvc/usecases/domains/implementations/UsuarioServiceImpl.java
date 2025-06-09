@@ -24,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = UsuarioMapper.toEntity(dto);
         Usuario saved = usuarioQueryService.save(usuario);
         UsuarioResponseDTO response = UsuarioMapper.toResponse(saved);
-        usuarioProducer.notificarAutenticacao(saved.getId());
+        usuarioProducer.notificarAutenticacao(String.valueOf(saved.getId()));
         return response;
     }
 
@@ -45,7 +45,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         UsuarioMapper.updateEntity(usuario, dto);
         Usuario saved = usuarioQueryService.save(usuario);
         UsuarioResponseDTO response = UsuarioMapper.toResponse(saved);
-        usuarioProducer.notificarAutenticacao(saved.getId());
+        usuarioProducer.notificarAutenticacao(String.valueOf(saved.getId()));
         return response;
     }
 
@@ -60,7 +60,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setFlDocVerificado("N");
         Usuario saved = usuarioQueryService.save(usuario);
         UsuarioResponseDTO response = UsuarioMapper.toResponse(saved);
-        usuarioProducer.notificarAutenticacao(saved.getId());
+        usuarioProducer.notificarAutenticacao(String.valueOf(saved.getId()));
         return response;
     }
 
@@ -70,7 +70,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setFlDocVerificado("S");
         Usuario saved = usuarioQueryService.save(usuario);
         UsuarioResponseDTO response = UsuarioMapper.toResponse(saved);
-        usuarioProducer.notificarAutenticacao(saved.getId());
+        usuarioProducer.notificarAutenticacao(String.valueOf(saved.getId()));
         return response;
     }
 }

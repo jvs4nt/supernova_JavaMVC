@@ -2,10 +2,6 @@ spring:
   application:
     name: supernova-test
 
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/supernova-db
-
   thymeleaf:
     cache: false
 

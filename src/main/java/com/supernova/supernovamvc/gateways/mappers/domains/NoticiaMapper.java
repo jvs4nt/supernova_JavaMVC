@@ -30,12 +30,12 @@ public class NoticiaMapper {
 
     public static NoticiaResponseDTO toResponse(Noticia noticia) {
         return NoticiaResponseDTO.builder()
-                .id(noticia.getId())
+                .id(String.valueOf(noticia.getId()))
                 .titulo(noticia.getTitulo())
                 .subtitulo(noticia.getSubtitulo())
                 .conteudo(noticia.getConteudo())
                 .link(noticia.getLink())
-                .usuarioId(noticia.getUsuario().getId())
+                .usuarioId(String.valueOf(noticia.getUsuario().getId()))
                 .nomeAutor(noticia.getUsuario().getNome())
                 .build();
     }

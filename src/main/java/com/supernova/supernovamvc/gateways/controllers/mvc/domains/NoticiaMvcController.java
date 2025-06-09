@@ -61,7 +61,7 @@ public class NoticiaMvcController {
             return "domains/noticias/form-noticia";
         }
 
-        dto.setUsuarioId(usuarioLogado.getId()); // Corrigido: ID é String
+        dto.setUsuarioId(String.valueOf(usuarioLogado.getId())); // Corrigido: ID é String
 
         if (noticiaId == null || noticiaId.isBlank()) {
             noticiaService.salvar(dto);

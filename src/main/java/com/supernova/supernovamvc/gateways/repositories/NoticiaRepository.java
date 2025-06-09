@@ -1,7 +1,7 @@
 package com.supernova.supernovamvc.gateways.repositories;
 
 import com.supernova.supernovamvc.domains.Noticia;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface NoticiaRepository extends MongoRepository<Noticia, String> {
+public interface NoticiaRepository extends JpaRepository<Noticia, String> {
 }

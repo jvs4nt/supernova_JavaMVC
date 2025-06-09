@@ -59,7 +59,7 @@ public class AlertaMvcController {
             return "domains/alertas/form-alerta";
         }
 
-        dto.setUsuarioId(usuarioLogado.getId()); // ID como String
+        dto.setUsuarioId(String.valueOf(usuarioLogado.getId())); // ID como String
 
         if (alertaId == null || alertaId.isBlank()) {
             alertaService.salvar(dto);
