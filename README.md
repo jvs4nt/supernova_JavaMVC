@@ -2,6 +2,8 @@
 
 **Supernova** é um sistema web voltado para o gerenciamento de informações críticas em situações de **eventos extremos**, como desastres naturais, emergências ambientais e crises humanitárias. O sistema oferece funcionalidades completas para o controle de **usuários, notícias, alertas**, garantindo segurança, desempenho e organização por meio de tecnologias modernas como **Spring Boot**, **MongoDB**, **RabbitMQ**, **OCR** e **JWT**.
 
+## Link do vídeo de demonstração do WebAPP
+https://youtu.be/yECsxGIlzys
 
 ## Funcionalidades 
 
