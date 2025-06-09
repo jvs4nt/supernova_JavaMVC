@@ -23,15 +23,6 @@ spring:
         options:
           model: gpt-3.5-turbo
 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-    listener:
-      simple:
-        default-requeue-rejected: false
-
   thymeleaf:
     cache: false
     prefix: classpath:/templates/

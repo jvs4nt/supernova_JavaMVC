@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-import static com.supernova.supernovamvc.configs.RabbitMQConfig.QUEUE;
 
 @Component
 @Slf4j
@@ -16,7 +15,6 @@ public class UsuarioConsumer {
 
     private final UsuarioRepository usuarioRepository;
 
-    @RabbitListener(queues = QUEUE)
     public void processarAutenticacao(AutenticacaoUsuarioDTO dto) {
         log.info("📩 Autenticação recebida na fila para usuário ID: {}", dto.getUsuarioId());
 
